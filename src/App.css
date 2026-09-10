@@ -1399,4 +1399,155 @@ html {
   }
 
 }
+/* ============================= */
+/* 📱 MOBILE RESPONSIVE DESIGN */
+/* ============================= */
+
+@media (max-width: 600px) {
+
+  .birthday-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+
+  h1 {
+    font-size: 30px;
+    line-height: 1.2;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* Birthday photo */
+
+  .birthday-boy {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .photo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Buttons */
+
+  button,
+  .surprise-btn {
+    width: 90%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 16px;
+    margin: 10px auto;
+    display: block;
+  }
+
+  /* Countdown */
+
+  .countdown {
+    font-size: 45px;
+    text-align: center;
+  }
+
+  /* Gift */
+
+  .gift-screen {
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .gift-box {
+    transform: scale(0.85);
+    margin: 20px auto;
+  }
+
+  /* Memories */
+
+  .memories {
+    width: 100%;
+    padding: 20px 5px;
+    box-sizing: border-box;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    width: 100%;
+  }
+
+  .gallery img {
+    width: 100%;
+    max-width: 330px;
+    height: auto;
+    margin: auto;
+    border-radius: 15px;
+  }
+
+  /* Birthday message */
+
+  .message-section {
+    width: 100%;
+    padding: 20px 5px;
+    box-sizing: border-box;
+  }
+
+  .birthday-message {
+    width: 100%;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    border-radius: 18px;
+  }
+
+  .birthday-message h3 {
+    font-size: 20px;
+  }
+
+  .typing-message {
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  /* Cake */
+
+  .cake {
+    font-size: 70px;
+    text-align: center;
+  }
+
+  /* Balloons */
+
+  .balloons span {
+    font-size: 30px;
+  }
+
+  .front-balloons span {
+    font-size: 30px;
+  }
+
+  /* Floating hearts */
+
+  .floating-hearts span {
+    font-size: 20px;
+  }
+}
+
 
