@@ -1,0 +1,1402 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+.birthday-container {
+  position: relative;
+  min-height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.35),
+                    rgba(255, 255, 255, 0.35)),
+    url("/photos/bg img.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.birthday-container h1 {
+  font-size: 50px;
+}
+
+.birthday-container h2 {
+  font-size: 32px;
+}
+
+.birthday-container p {
+  font-size: 20px;
+}
+
+.birthday-container button {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+/* Balloons */
+
+.balloons {
+  display: flex;
+  gap: 25px;
+  margin: 20px;
+}
+
+.balloons span {
+  font-size: 55px;
+  animation: float 3s infinite ease-in-out;
+}
+
+.balloons span:nth-child(2) {
+  animation-delay: 0.5s;
+}
+
+.balloons span:nth-child(3) {
+  animation-delay: 1s;
+}
+
+.balloons span:nth-child(4) {
+  animation-delay: 1.5s;
+}
+
+.balloons span:nth-child(5) {
+  animation-delay: 2s;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+
+/* Cake */
+
+.cake {
+  font-size: 100px;
+  animation: cakeBounce 1.5s infinite;
+}
+
+@keyframes cakeBounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.surprise-btn {
+  padding: 16px 35px;
+  border: none;
+  border-radius: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(45deg, #ff4081, #7c4dff);
+  cursor: pointer;
+
+  box-shadow: 0 0 15px rgba(255, 64, 129, 0.7);
+
+  animation: buttonGlow 1.8s infinite;
+  transition: transform 0.3s;
+}
+
+.surprise-btn:hover {
+  transform: scale(1.1);
+}
+
+.surprise-btn:active {
+  transform: scale(0.95);
+}
+.front-photo {
+  animation: photoAppear 1.5s ease-out, photoGlow 2s infinite;
+}
+
+@keyframes photoAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.1) rotate(3deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes photoGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 35px rgba(255, 215, 0, 0.9);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes buttonGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(124, 77, 255, 0.9);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+  }
+}
+
+
+/* Confetti */
+
+.confetti {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.confetti span {
+  position: absolute;
+  font-size: 30px;
+  animation: fall 4s linear infinite;
+}
+
+.confetti span:nth-child(1) {
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.confetti span:nth-child(2) {
+  left: 20%;
+  animation-delay: 1s;
+}
+
+.confetti span:nth-child(3) {
+  left: 30%;
+  animation-delay: 2s;
+}
+
+.confetti span:nth-child(4) {
+  left: 40%;
+  animation-delay: 0.5s;
+}
+
+.confetti span:nth-child(5) {
+  left: 55%;
+  animation-delay: 1.5s;
+}
+
+.confetti span:nth-child(6) {
+  left: 65%;
+  animation-delay: 2.5s;
+}
+
+.confetti span:nth-child(7) {
+  left: 75%;
+  animation-delay: 1s;
+}
+
+.confetti span:nth-child(8) {
+  left: 90%;
+  animation-delay: 2s;
+}
+
+@keyframes fall {
+  0% {
+    top: -50px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    top: 100vh;
+    transform: rotate(360deg);
+  }
+}
+/* Birthday Boy Photo */
+
+.birthday-boy {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 6px solid white;
+  margin: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Memories */
+
+.memories {
+  width: 90%;
+  max-width: 900px;
+  margin-top: 50px;
+}
+
+.memories h2 {
+  margin-bottom: 25px;
+}
+
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+.message-section {
+  width: 90%;
+  max-width: 700px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.message-section h2 {
+  margin-bottom: 45px;
+}
+
+.birthday-message h3 {
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.birthday-message p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+@keyframes messageOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.front-balloons {
+  position: fixed;
+  left: 0;
+  bottom: -150px;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.front-balloons span {
+  position: absolute;
+  font-size: 60px;
+  animation: balloonFly 8s linear infinite;
+}
+
+/* Different positions */
+.front-balloons span:nth-child(1) {
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.front-balloons span:nth-child(2) {
+  left: 25%;
+  animation-delay: 2s;
+}
+
+.front-balloons span:nth-child(3) {
+  left: 45%;
+  animation-delay: 4s;
+}
+
+.front-balloons span:nth-child(4) {
+  left: 70%;
+  animation-delay: 1s;
+}
+
+.front-balloons span:nth-child(5) {
+  left: 90%;
+  animation-delay: 3s;
+}
+
+@keyframes balloonFly {
+  0% {
+    transform: translateY(0) rotate(-10deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-50vh) rotate(10deg);
+  }
+
+  100% {
+    transform: translateY(-120vh) rotate(-10deg);
+    opacity: 0;
+  }
+}
+.explosion {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.explosion span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 25px;
+  animation: explode 1.5s ease-out forwards;
+}
+
+@keyframes explode {
+  0% {
+    transform: translate(0, 0) scale(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(var(--x), var(--y)) scale(1.5);
+    opacity: 0;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+/* =========================
+   SPECIAL MESSAGE SECTION
+========================= */
+
+.message-section {
+  position: relative;
+
+  width: 90%;
+  max-width: 850px;
+  min-height: 650px;
+
+  margin-top: 120px;
+  padding: 70px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  border-radius: 35px;
+
+  background: rgba(255, 255, 255, 0.15);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.15);
+
+  overflow: hidden;
+}
+
+
+/* Heading */
+
+.message-section h2 {
+  font-size: 42px;
+  margin-bottom: 35px;
+
+  animation: messageTitle 2s ease;
+
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 25px rgba(255, 105, 180, 0.8);
+}
+
+
+/* Glowing Heart */
+
+.message-section::before {
+  content: "❤️";
+
+  position: absolute;
+
+  top: 25px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 45px;
+
+  animation: heartBeat 1.5s infinite;
+}
+
+
+/* Decorative hearts */
+
+.message-section::after {
+  content: "✨  💖  ✨";
+
+  position: absolute;
+
+  bottom: 25px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 25px;
+
+  opacity: 0.8;
+
+  animation: sparkle 2s infinite;
+}
+.countdown {
+  margin: 25px 0;
+  font-size: 80px;
+  font-weight: bold;
+  color: white;
+  text-shadow:
+    0 0 10px white,
+    0 0 25px #ff4081,
+    0 0 50px #7c4dff;
+
+  animation: countdownPop 1s ease-in-out;
+}
+
+@keyframes countdownPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+/* =========================
+   MESSAGE CARD
+========================= */
+
+.birthday-message {
+  position: relative;
+
+  width: 85%;
+  max-width: 650px;
+
+  padding: 45px;
+
+  border-radius: 30px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  color: #333;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.25),
+    0 0 30px rgba(255, 105, 180, 0.4);
+
+  animation: messageAppear 1.5s ease;
+
+  z-index: 2;
+}
+
+
+/* Dear Birthday Boy */
+
+.birthday-message h3 {
+  font-size: 30px;
+
+  margin-bottom: 25px;
+
+  color: #e91e63;
+
+  animation: fadeDown 1s ease;
+}
+
+
+/* Message text */
+
+.birthday-message p {
+  font-size: 20px;
+
+  line-height: 1.8;
+
+  margin-bottom: 20px;
+
+  color: #444;
+}
+
+
+/* Button */
+
+.birthday-message button {
+  margin-top: 20px;
+
+  padding: 13px 28px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  background: linear-gradient(
+    45deg,
+    #ff4081,
+    #7c4dff
+  );
+
+  color: white;
+
+  transition: 0.3s;
+
+  box-shadow:
+    0 5px 20px rgba(124, 77, 255, 0.4);
+}
+
+
+.birthday-message button:hover {
+  transform: scale(1.08);
+
+  box-shadow:
+    0 8px 30px rgba(255, 64, 129, 0.6);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes messageTitle {
+
+  0% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes messageAppear {
+
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(80px);
+  }
+
+  70% {
+    transform: scale(1.03) translateY(-5px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+}
+
+
+@keyframes fadeDown {
+
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes heartBeat {
+
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+
+  50% {
+    transform: translateX(-50%) scale(1.25);
+  }
+
+  100% {
+    transform: translateX(-50%) scale(1);
+  }
+
+}
+
+
+@keyframes sparkle {
+
+  0% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+
+}
+.typing-message {
+  min-height: 150px;
+  text-align: left;
+}
+
+.cursor {
+  font-weight: bold;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+
+  51%, 100% {
+    opacity: 0;
+  }
+}
+.photo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  perspective: 1000px;
+}
+
+.photo-container .birthday-boy {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 8px solid white;
+
+  animation: photo3D 4s ease-in-out infinite;
+
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.8),
+    0 0 50px rgba(255, 105, 180, 0.7);
+}
+
+@keyframes photo3D {
+  0% {
+    transform: rotateY(-10deg) scale(1);
+  }
+
+  50% {
+    transform: rotateY(10deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotateY(-10deg) scale(1);
+  }
+}
+.floating-hearts {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.floating-hearts span {
+  position: absolute;
+  font-size: 30px;
+  animation: heartFloat 4s ease-in-out infinite;
+}
+
+.floating-hearts span:nth-child(1) {
+  left: 0;
+  top: 30%;
+  animation-delay: 0s;
+}
+
+.floating-hearts span:nth-child(2) {
+  right: 0;
+  top: 20%;
+  animation-delay: 0.7s;
+}
+
+.floating-hearts span:nth-child(3) {
+  left: 10%;
+  bottom: 10%;
+  animation-delay: 1.4s;
+}
+
+.floating-hearts span:nth-child(4) {
+  right: 10%;
+  bottom: 5%;
+  animation-delay: 2s;
+}
+
+.floating-hearts span:nth-child(5) {
+  left: 20%;
+  top: 0;
+  animation-delay: 2.5s;
+}
+
+.floating-hearts span:nth-child(6) {
+  right: 20%;
+  top: 5%;
+  animation-delay: 3s;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(20px) scale(0.8);
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-50px) scale(0.8);
+    opacity: 0;
+  }
+}
+.music-background {
+  background-size: 200% 200%;
+  animation: backgroundMove 12s ease infinite;
+}
+
+@keyframes backgroundMove {
+ 0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+/* =========================
+   FINAL LAYER FIX
+========================= */
+
+.birthday-container {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  z-index: 0;
+}
+
+/* Background glow */
+.birthday-container::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 105, 180, 0.25),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(124, 77, 255, 0.25),
+      transparent 30%
+    );
+
+  animation: glowMove 6s ease-in-out infinite alternate;
+}
+
+/* Front page content */
+.birthday-container h1,
+.birthday-container h2,
+.birthday-container p,
+.birthday-container .surprise-btn,
+.birthday-container .countdown {
+  position: relative;
+  z-index: 10;
+}
+
+/* Front birthday photo */
+.front-photo {
+  position: relative;
+  z-index: 20 !important;
+  display: block;
+}
+
+/* Front balloons */
+.front-balloons {
+  z-index: 5;
+}
+
+/* Photo container */
+.photo-container {
+  position: relative;
+  z-index: 20;
+}
+
+/* Floating hearts */
+.floating-hearts {
+  z-index: 25;
+}
+
+@keyframes glowMove {
+  from {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+/* =========================
+   GIFT OPENING EXPERIENCE
+========================= */
+
+.welcome-screen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-screen h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  animation: welcomeTitle 1.5s ease;
+}
+
+.welcome-text {
+  font-size: 22px;
+  margin-bottom: 40px;
+}
+
+/* Gift */
+
+.gift-box {
+  position: relative;
+  width: 180px;
+  height: 160px;
+  cursor: pointer;
+  margin: 30px;
+  animation: giftShake 2s infinite;
+  transition: transform 0.3s;
+}
+
+.gift-box:hover {
+  transform: scale(1.1);
+}
+
+/* Gift body */
+
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+  width: 150px;
+  height: 110px;
+  background: linear-gradient(
+    90deg,
+    #ff4081,
+    #e91e63
+  );
+  border-radius: 8px;
+}
+
+/* Gift lid */
+
+.gift-lid {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  width: 170px;
+  height: 55px;
+  background: linear-gradient(
+    90deg,
+    #ff4081,
+    #c2185b
+  );
+  border-radius: 8px;
+  z-index: 2;
+  font-size: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ribbon */
+
+.gift-body::before {
+  content: "";
+  position: absolute;
+  left: 60px;
+  width: 30px;
+  height: 100%;
+  background: #ffd700;
+}
+
+.gift-body::after {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: #ffd700;
+}
+
+/* Shake */
+
+@keyframes giftShake {
+  0%, 100% {
+    transform: rotate(0);
+  }
+
+  10% {
+    transform: rotate(-5deg);
+  }
+
+  20% {
+    transform: rotate(5deg);
+  }
+
+  30% {
+    transform: rotate(-5deg);
+  }
+
+  40% {
+    transform: rotate(5deg);
+  }
+
+  50% {
+    transform: rotate(0);
+  }
+}
+
+/* Hint */
+
+.gift-hint {
+  font-size: 18px;
+  animation: hintPulse 1.5s infinite;
+}
+
+@keyframes hintPulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* After opening */
+
+.gift-opened {
+  animation: openedAppear 1s ease;
+}
+
+.gift-burst {
+  font-size: 40px;
+  margin-bottom: 25px;
+  animation: burst 1s ease infinite alternate;
+}
+
+.gift-opened h2 {
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+@keyframes openedAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes burst {
+  from {
+    transform: scale(0.9);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes welcomeTitle {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   GIFT OPENING SCREEN
+========================================= */
+
+.gift-screen {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+
+/* Gift heading */
+
+.gift-screen h1 {
+  font-size: 42px;
+  margin-bottom: 15px;
+  animation: giftTitle 2s ease-in-out infinite;
+}
+
+.gift-screen p {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+
+/* =========================================
+   GIFT BOX
+========================================= */
+
+.gift-box {
+  width: 180px;
+  height: 160px;
+  position: relative;
+  cursor: pointer;
+  margin: 20px 0;
+  animation: giftFloat 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+
+/* Hover */
+
+.gift-box:hover {
+  transform: scale(1.12);
+}
+
+
+/* Gift body */
+
+.gift-body {
+  position: absolute;
+  bottom: 0;
+  left: 15px;
+
+  width: 150px;
+  height: 105px;
+
+  background: linear-gradient(
+    135deg,
+    #ff4f81,
+    #ff1744
+  );
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 55px;
+
+  box-shadow:
+    0 15px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Gift lid */
+
+.gift-lid {
+  position: absolute;
+  top: 25px;
+  left: 5px;
+
+  width: 170px;
+  height: 45px;
+
+  background: linear-gradient(
+    135deg,
+    #ff6b9a,
+    #ff1744
+  );
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 35px;
+
+  z-index: 2;
+
+  box-shadow:
+    0 8px 15px rgba(0, 0, 0, 0.2);
+
+  animation: lidShake 1.5s ease-in-out infinite;
+}
+
+
+/* =========================================
+   GIFT ANIMATIONS
+========================================= */
+
+@keyframes giftFloat {
+
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+
+}
+
+
+@keyframes lidShake {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(-3deg);
+  }
+
+  50% {
+    transform: rotate(3deg);
+  }
+
+  75% {
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+
+}
+
+
+@keyframes giftTitle {
+
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.04);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+
+}
+
+
+/* =========================================
+   OPEN SURPRISE BUTTON
+========================================= */
+
+.gift-screen .surprise-btn {
+  margin-top: 20px;
+}
+
+
+/* =========================================
+   COUNTDOWN SCREEN
+========================================= */
+
+.countdown-screen {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.countdown-screen .countdown {
+  font-size: 100px;
+  font-weight: bold;
+
+  animation: countdownZoom 1s ease-in-out;
+}
+
+
+.countdown-screen p {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+
+@keyframes countdownZoom {
+
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .gift-screen h1 {
+    font-size: 30px;
+  }
+
+  .gift-screen p {
+    font-size: 17px;
+    max-width: 320px;
+  }
+
+  .gift-box {
+    transform: scale(0.85);
+  }
+
+  .gift-box:hover {
+    transform: scale(0.95);
+  }
+
+  .countdown-screen .countdown {
+    font-size: 70px;
+  }
+
+}
+
