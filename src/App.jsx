@@ -1,27 +1,36 @@
-
 import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  // =========================
+  // STATES
+  // =========================
+
   const [showGift, setShowGift] = useState(true);
+  const [giftOpening, setGiftOpening] = useState(false);
   const [showSurprise, setShowSurprise] = useState(false);
   const [countdown, setCountdown] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
   const [typedText, setTypedText] = useState("");
+  const [videoFinished, setVideoFinished] = useState(false);
+
+  // =========================
+  // REFS
+  // =========================
 
   const messageRef = useRef(null);
   const audioRef = useRef(null);
+  const videoRef = useRef(null);
 
   // =========================
   // BIRTHDAY MESSAGE
   // =========================
 
   const birthdayText =
-    "Wishing you a very Happy Birthday! 🎂🥳 May this new year of your life bring you lots of happiness, success, laughter, and unforgettable memories. Keep smiling, keep shining, and always be the amazing person you are! ❤️";
-
+    "Happy Birthday to the best brother ever! ❤️🎂 Thank you for always being there for me, supporting me, and making life more fun. May you always stay happy, healthy, and successful. Wishing you a beautiful year filled with lots of happiness and amazing memories. 🥳💙";
 
   // =========================
-  // TYPING EFFECT
+  // TYPEWRITER EFFECT
   // =========================
 
   useEffect(() => {
@@ -33,63 +42,167 @@ function App() {
     let index = 0;
 
     const typing = setInterval(() => {
-      setTypedText(birthdayText.slice(0, index));
       index++;
 
-      if (index > birthdayText.length) {
+      setTypedText(
+        birthdayText.slice(0, index)
+      );
+
+      // Message finished typing
+      if (index >= birthdayText.length) {
         clearInterval(typing);
+
+        // Wait 2 seconds and scroll to video
+        setTimeout(() => {
+          const videoSection =
+            document.getElementById("memory-video");
+
+          if (!videoSection) {
+            console.log(
+              "Video section not found"
+            );
+            return;
+          }
+
+          console.log(
+            "Scrolling to video..."
+          );
+
+          videoSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+
+          // Stop background music
+          if (audioRef.current) {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+          }
+
+          // Try to start video
+          setTimeout(() => {
+            if (videoRef.current) {
+              videoRef.current
+                .play()
+                .then(() => {
+                  console.log(
+                    "Video started playing"
+                  );
+                })
+                .catch((error) => {
+                  console.log(
+                    "Video autoplay blocked:",
+                    error
+                  );
+                });
+            }
+          }, 1000);
+        }, 2000);
       }
     }, 50);
 
-    return () => clearInterval(typing);
+    return () => {
+      clearInterval(typing);
+    };
   }, [showMessage]);
-
 
   // =========================
   // OPEN GIFT
   // =========================
 
   const handleGift = () => {
-    setShowGift(false);
+    if (giftOpening) return;
 
-    // Start countdown
-    setCountdown(3);
+    setGiftOpening(true);
 
+    // Gift animation
     setTimeout(() => {
-      setCountdown(2);
-    }, 1000);
+      setShowGift(false);
 
-    setTimeout(() => {
-      setCountdown(1);
-    }, 2000);
+      // Countdown 3
+      setCountdown(3);
 
-    setTimeout(() => {
-      setCountdown("🎊 SURPRISE! 🎊");
-    }, 3000);
-
-    // Show surprise page
-    setTimeout(() => {
-      setCountdown(null);
-      setShowSurprise(true);
-
-      // Start music
-      audioRef.current?.play();
-
-      // Show message after 5 seconds
+      // Countdown 2
       setTimeout(() => {
-        setShowMessage(true);
+        setCountdown(2);
+      }, 1000);
 
-        // Scroll to message
+      // Countdown 1
+      setTimeout(() => {
+        setCountdown(1);
+      }, 2000);
+
+      // Surprise text
+      setTimeout(() => {
+        setCountdown("🎊 SURPRISE! 🎊");
+      }, 3000);
+
+      // Show surprise
+      setTimeout(() => {
+        setCountdown(null);
+        setShowSurprise(true);
+
+        // Start birthday music
+        if (audioRef.current) {
+          audioRef.current.currentTime = 0;
+
+          audioRef.current
+            .play()
+            .catch(() => {
+              console.log(
+                "Music requires user interaction."
+              );
+            });
+        }
+
+        // Show message after 5 seconds
         setTimeout(() => {
-          messageRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-          });
-        }, 300);
-      }, 5000);
-    }, 4000);
+          setShowMessage(true);
+
+          // Scroll to message
+          setTimeout(() => {
+            messageRef.current?.scrollIntoView({
+              behavior: "smooth",
+              block: "center",
+            });
+          }, 300);
+        }, 5000);
+      }, 4000);
+    }, 1000);
   };
 
+  // =========================
+  // START AGAIN
+  // =========================
+
+  const handleStartAgain = () => {
+    // Stop music
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+
+    // Stop video
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+
+    // Reset everything
+    setShowGift(true);
+    setGiftOpening(false);
+    setShowSurprise(false);
+    setCountdown(null);
+    setShowMessage(false);
+    setTypedText("");
+    setVideoFinished(false);
+
+    // Scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
 
   // =========================
   // BALLOONS
@@ -102,7 +215,6 @@ function App() {
     "🎈",
     "🎈",
   ];
-
 
   // =========================
   // CONFETTI
@@ -119,33 +231,27 @@ function App() {
     "🎊",
   ];
 
-
   // =========================
-  // MEMORIES
+  // JSX
   // =========================
-
-  const memories = [
-    "/photos/pic1.jpeg",
-    "/photos/pic2.jpeg",
-    "/photos/pic3.jpeg",
-  ];
-
 
   return (
     <div className="birthday-container music-background">
 
       {/* =========================
-          MUSIC
+          BACKGROUND MUSIC
       ========================= */}
 
       <audio ref={audioRef} loop>
-        <source src="/audio.mp3" type="audio/mpeg" />
+        <source
+          src="/audio.mp3"
+          type="audio/mpeg"
+        />
       </audio>
 
-
-      {/* =================================================
+      {/* =========================
           GIFT SCREEN
-      ================================================= */}
+      ========================= */}
 
       {showGift && (
         <div className="gift-screen">
@@ -159,21 +265,22 @@ function App() {
             <span>🎈</span>
           </div>
 
-
           <h1>
             🎉 Someone has a surprise for you! 🎉
           </h1>
 
-
           <p>
-            There is a special birthday surprise waiting for you...
+            There is a special birthday surprise
+            waiting for you...
           </p>
 
-
           {/* Gift */}
-
           <div
-            className="gift-box"
+            className={`gift-box ${
+              giftOpening
+                ? "gift-opening"
+                : ""
+            }`}
             onClick={handleGift}
           >
             <div className="gift-lid">
@@ -185,158 +292,99 @@ function App() {
             </div>
           </div>
 
-
           <h2>
             🎁 Open Your Gift
           </h2>
 
-
           <button
             className="surprise-btn"
             onClick={handleGift}
+            disabled={giftOpening}
           >
-            ✨ Open Surprise ✨
+            {giftOpening
+              ? "✨ Opening..."
+              : "✨ Open Surprise ✨"}
           </button>
 
         </div>
       )}
 
-
-      {/* =================================================
+      {/* =========================
           COUNTDOWN
-      ================================================= */}
+      ========================= */}
 
-      {!showGift && !showSurprise && countdown && (
-        <div className="countdown-screen">
+      {!showGift &&
+        !showSurprise &&
+        countdown && (
+          <div className="countdown-screen">
 
-          <div className="countdown">
-            {countdown}
+            <div className="countdown">
+              {countdown}
+            </div>
+
+            <p>
+              Get ready... 🎉
+            </p>
+
           </div>
+        )}
 
-          <p>
-            Get ready... 🎉
-          </p>
-
-        </div>
-      )}
-
-
-      {/* =================================================
-          SURPRISE PAGE
-      ================================================= */}
+      {/* =========================
+          SURPRISE SCREEN
+      ========================= */}
 
       {showSurprise && (
         <>
 
-          {/* =========================
-              CONFETTI
-          ========================= */}
-
+          {/* Confetti */}
           <div className="confetti">
-
-            {confetti.map((item, index) => (
-              <span key={index}>
-                {item}
-              </span>
-            ))}
-
+            {confetti.map(
+              (item, index) => (
+                <span key={index}>
+                  {item}
+                </span>
+              )
+            )}
           </div>
 
-
-          {/* =========================
-              BALLOONS
-          ========================= */}
-
+          {/* Balloons */}
           <div className="balloons">
-
-            {balloons.map((balloon, index) => (
-              <span key={index}>
-                {balloon}
-              </span>
-            ))}
-
+            {balloons.map(
+              (balloon, index) => (
+                <span key={index}>
+                  {balloon}
+                </span>
+              )
+            )}
           </div>
 
-
-          {/* =========================
-              SURPRISE HEADING
-          ========================= */}
-
+          {/* Main Heading */}
           <h1>
             🎊 SURPRISE! 🎊
           </h1>
 
+          {/* Birthday Photo */}
+          <img
+            className="birthday-boy"
+            src="/photos/pic2.jpeg"
+            alt="Birthday Boy"
+          />
 
-          {/* =========================
-              PHOTO
-          ========================= */}
-
-          <div className="photo-container">
-
-            <div className="floating-hearts">
-              <span>❤️</span>
-              <span>💖</span>
-              <span>💕</span>
-              <span>💗</span>
-              <span>❤️</span>
-              <span>💖</span>
-            </div>
-
-
-            <img
-              className="birthday-boy"
-              src="/photos/pic2.jpeg"
-              alt="Birthday Boy"
-            />
-
-          </div>
-
-
-          {/* =========================
-              CAKE
-          ========================= */}
-
+          {/* Cake */}
           <div className="cake">
             🎂
           </div>
 
-
+          {/* Birthday Heading */}
           <h2>
-            Happy Birthday Guru! 🥳
+            Happy Birthday Anna! 🥳
           </h2>
 
-
           <p>
-            May your day be filled with happiness,
-            laughter, and lots of amazing memories! ❤️
+            May your day be filled with
+            happiness, laughter, and lots
+            of amazing memories! ❤️
           </p>
-
-
-          {/* =========================
-              MEMORIES
-          ========================= */}
-
-          <section className="memories">
-
-            <h2>
-              📸 Our Memories
-            </h2>
-
-
-            <div className="gallery">
-
-              {memories.map((photo, index) => (
-                <img
-                  key={index}
-                  src={photo}
-                  alt={`Memory ${index + 1}`}
-                />
-              ))}
-
-            </div>
-
-          </section>
-
 
           {/* =========================
               SPECIAL MESSAGE
@@ -351,7 +399,6 @@ function App() {
               💌 A Special Message
             </h2>
 
-
             {showMessage && (
               <div className="birthday-message">
 
@@ -359,56 +406,108 @@ function App() {
                   Dear Brother ❤️
                 </h3>
 
-
                 <p className="typing-message">
-
                   {typedText}
 
                   <span className="cursor">
                     |
                   </span>
-
                 </p>
 
-
                 <h3>
-                  Once again... Happy Birthday! 🎉🎂
+                  Once again...
+                  Happy Birthday! 🎉🎂
                 </h3>
-
-
-                <button
-                  onClick={() => setShowMessage(false)}
-                >
-                  🔒 Hide Message
-                </button>
 
               </div>
             )}
 
           </section>
 
+          {/* =========================
+              MEMORY VIDEO
+          ========================= */}
+
+          <section
+            id="memory-video"
+            className="memories"
+          >
+
+            <h2>
+              🎬 Our Memories
+            </h2>
+
+            <div className="memory-video">
+
+              <video
+                ref={videoRef}
+                controls
+                playsInline
+                preload="metadata"
+
+                // Stop background music
+                // when video starts
+                onPlay={() => {
+                  if (audioRef.current) {
+                    audioRef.current.pause();
+                    audioRef.current.currentTime = 0;
+                  }
+                }}
+
+                // Show Enjoy Your Day
+                // when video ends
+                onEnded={() => {
+                  console.log(
+                    "VIDEO FINISHED!"
+                  );
+
+                  setVideoFinished(true);
+                }}
+              >
+
+                <source
+                  src="/memories.mp4"
+                  type="video/mp4"
+                />
+
+                Your browser does not
+                support the video tag.
+
+              </video>
+
+            </div>
+
+            {/* =========================
+                ENJOY YOUR DAY MESSAGE
+            ========================= */}
+
+            {videoFinished && (
+              <div className="enjoy-message">
+
+                <h2>
+                  🎉 Enjoy Your Day! 🎂❤️
+                </h2>
+
+                <p>
+                  Keep smiling, keep shining,
+                  and make lots of beautiful
+                  memories! 🥳💙
+                </p>
+
+              </div>
+            )}
+
+          </section>
 
           {/* =========================
-              GO BACK
+              START AGAIN
           ========================= */}
 
           <button
-            onClick={() => {
-
-              setShowGift(true);
-              setShowSurprise(false);
-              setShowMessage(false);
-              setCountdown(null);
-              setTypedText("");
-
-              window.scrollTo({
-                top: 0,
-                behavior: "smooth",
-              });
-
-            }}
+            className="start-again-btn"
+            onClick={handleStartAgain}
           >
-            🔙 Start Again
+            🔄 Start Again
           </button>
 
         </>
@@ -419,4 +518,3 @@ function App() {
 }
 
 export default App;
-
